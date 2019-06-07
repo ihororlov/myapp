@@ -8,7 +8,7 @@ pipeline {
                 dockerfile true
             }
             steps { 
-                pwd
+                sh 'pwd'
                 echo 'Hello World'
                 sleep 5
             }
