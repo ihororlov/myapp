@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Example') {
             steps { 
-                docker --version
+                which docker
             }
         }
     }
