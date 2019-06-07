@@ -4,13 +4,8 @@ pipeline {
         }
     stages {
         stage('Example') {
-            agent {
-                dockerfile true
-            }
             steps { 
-                sh 'pwd'
-                echo 'Hello World'
-                sleep 5
+                docker --version
             }
         }
     }
