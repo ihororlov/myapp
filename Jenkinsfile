@@ -1,21 +1,25 @@
 pipeline {
-    agent any
+    agent { 
+        dockerfile true
+    }
 
     stages {
-        stage('Build') {
+        stage('Remove Container') {
             steps {
-                echo 'Building..'
+                docker rm -f c1 || /bin/true
             }
         }
-        stage('Test') {
+        stage('Build Image') {
             steps {
-                echo 'Testing..'
+                docker build -t gitlab.intecracy.com:4567/devopssoftengi/devops_test/www:v2 .
             }
         }
-        stage('Deploy') {
+        stage('Run Container') {
             steps {
-                echo 'Deploying....'
+                docker run --name c1 -d -p 80:80 gitlab.intecracy.com:4567/devopssoftengi/devops_test/www:v2
             }
         }
-    }
+   }
 }
+
+       
